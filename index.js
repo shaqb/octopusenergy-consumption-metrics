@@ -57,6 +57,7 @@ const boot = async (callback) => {
 
     while (true){
         // Sleep to ensure API doesn't get spammed if the container continually restarts
+        console.log("Sleeping for 10 minutes")
         sleep(600)
         // Set up influx client
         const client = new InfluxDB({url: INFLUXDB_URL, token: INFLUXDB_TOKEN})
