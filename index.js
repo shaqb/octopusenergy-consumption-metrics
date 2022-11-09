@@ -56,6 +56,8 @@ const boot = async (callback) => {
 
 
     while (true){
+        // Sleep to ensure API doesn't get spammed if the container continually restarts
+        sleep(600)
         // Set up influx client
         const client = new InfluxDB({url: INFLUXDB_URL, token: INFLUXDB_TOKEN})
         const writeApi = client.getWriteApi(INFLUXDB_ORG, INFLUXDB_BUCKET)
@@ -137,7 +139,7 @@ const boot = async (callback) => {
                 console.error(e)
                 console.log('Error submitting data to InfluxDB')
             })
-        
+
         // Now sleep for the loop time
         console.log("Sleeping for: " + LOOP_TIME)
          sleep(Number(LOOP_TIME))
